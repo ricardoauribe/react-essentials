@@ -54,26 +54,14 @@ function RegularComponent() {
 
 function App(props) {
 
-  if(props.authorized){
-    return (
-      <div className="App">
-        <Header name="Ricardo" />
-        <Main adjective="amazing" dishes={dishObject} />
-        <Footer year={new Date().getFullYear()}/>
-        <SecretComponent/>
-      </div>
-    )
-  }
-  else{
-    return (
-      <div className="App">
-        <Header name="Ricardo" />
-        <Main adjective="amazing" dishes={dishObject} />
-        <Footer year={new Date().getFullYear()}/>
-        <RegularComponent/>
-      </div>
-    );
-  }
+  return (
+    <div className="App">
+      <Header name="Ricardo" />
+      <Main adjective="amazing" dishes={dishObject} />
+      <Footer year={new Date().getFullYear()}/>
+      {props.authorized ? <SecretComponent/> : <RegularComponent/> }
+    </div>
+  );
 }
 
 export default App;
