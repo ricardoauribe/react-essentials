@@ -52,6 +52,7 @@ function RegularComponent() {
   return <h1>This is a common component</h1>
 }
 
+//https://api.github.com/users/ricardoauribe
 
 function App(props) {
 
@@ -61,6 +62,14 @@ function App(props) {
     (checked)=> !checked,
     false
   );
+
+  const [data, setData] = useState(null);
+
+  useEffect(()=>{
+    fetch(`https://api.github.com/users/${props.login}`)
+      .then(response => response.json())
+      .then(setData);
+  }, []);
 
   useEffect(() => {
     console.log(`It's ${emotion} around here!`);
@@ -87,6 +96,7 @@ function App(props) {
         onChange={toggle}>
       </input>
       <p>{checked ? "checked" : "not checked"}</p>
+      {data ?  <div>{JSON.stringify(data)}</div> : <div>No data</div>}
 
     </div>
   );
