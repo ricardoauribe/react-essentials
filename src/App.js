@@ -43,14 +43,37 @@ const dishes = [
 const dishObject = dishes.map((dish, i)=> ({id:i, title: dish}));
 
 
-function App() {
-  return (
-    <div className="App">
-      <Header name="Ricardo" />
-      <Main adjective="amazing" dishes={dishObject} />
-      <Footer year={new Date().getFullYear()}/>
-    </div>
-  );
+function SecretComponent () {
+  return <h1>Secret infor for authorized users only</h1>
+}
+
+function RegularComponent() {
+  return <h1>This is a common component</h1>
+}
+
+
+function App(props) {
+
+  if(props.authorized){
+    return (
+      <div className="App">
+        <Header name="Ricardo" />
+        <Main adjective="amazing" dishes={dishObject} />
+        <Footer year={new Date().getFullYear()}/>
+        <SecretComponent/>
+      </div>
+    )
+  }
+  else{
+    return (
+      <div className="App">
+        <Header name="Ricardo" />
+        <Main adjective="amazing" dishes={dishObject} />
+        <Footer year={new Date().getFullYear()}/>
+        <RegularComponent/>
+      </div>
+    );
+  }
 }
 
 export default App;
