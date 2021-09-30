@@ -1,5 +1,5 @@
 import './App.css';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import restaurant from './restaurant.jpeg';
 
 function Header(props) {
@@ -56,6 +56,15 @@ function RegularComponent() {
 function App(props) {
 
   const [emotion, setEmotion] = useState("happy");
+  const [secondary, setSecondary] = useState("tired");
+
+  useEffect(() => {
+    console.log(`It's ${emotion} around here!`);
+  }, [emotion]);
+
+  useEffect(()=> {
+    console.log(`It's ${secondary} around here!`);
+  }, [secondary])
 
   return (
     <div className="App">
@@ -63,10 +72,11 @@ function App(props) {
       <Main adjective="amazing" dishes={dishObject} />
       <Footer year={new Date().getFullYear()}/>
       {props.authorized ? <SecretComponent/> : <RegularComponent/> }
-      <h1>Current emotion is {emotion}. </h1>
+      <h1>Current emotion is {emotion} and {secondary} </h1>
       <button onClick={()=> setEmotion("happy")}>Happy</button>
       <button onClick={()=> setEmotion("frustrated")}>Frustrate</button>
       <button onClick={()=> setEmotion("enthusiastic")}>Enthuse</button>
+      <button onClick={()=> setSecondary("crabby")}>Make Crabby</button>
     </div>
   );
 }
