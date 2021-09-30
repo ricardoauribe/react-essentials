@@ -1,5 +1,5 @@
 import './App.css';
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useReducer} from 'react';
 import restaurant from './restaurant.jpeg';
 
 function Header(props) {
@@ -57,6 +57,10 @@ function App(props) {
 
   const [emotion, setEmotion] = useState("happy");
   const [secondary, setSecondary] = useState("tired");
+  const [checked, toggle] = useReducer(
+    (checked)=> !checked,
+    false
+  );
 
   useEffect(() => {
     console.log(`It's ${emotion} around here!`);
@@ -77,6 +81,13 @@ function App(props) {
       <button onClick={()=> setEmotion("frustrated")}>Frustrate</button>
       <button onClick={()=> setEmotion("enthusiastic")}>Enthuse</button>
       <button onClick={()=> setSecondary("crabby")}>Make Crabby</button>
+      <input 
+        type="checkbox" 
+        value={checked} 
+        onChange={toggle}>
+      </input>
+      <p>{checked ? "checked" : "not checked"}</p>
+
     </div>
   );
 }
