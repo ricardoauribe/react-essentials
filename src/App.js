@@ -6,7 +6,8 @@ import{
   Home,
   About,
   Events,
-  Contact
+  Contact,
+  Whoops404
 } from "./pages";
 
 function Header(props) {
@@ -104,6 +105,7 @@ function App(props) {
         <Route path="/about" element={<About />} />
         <Route path="/events" element={<Events />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="*" element={<Whoops404 />} />
       </Routes>
       <Header name="Ricardo" />
       <Main adjective="amazing" dishes={dishObject} />
