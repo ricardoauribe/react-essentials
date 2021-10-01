@@ -96,8 +96,9 @@ function App(props) {
         onChange={toggle}>
       </input>
       <p>{checked ? "checked" : "not checked"}</p>
-      {data ?  <div>{JSON.stringify(data)}</div> : <div>No data</div>}
-
+      {data ?  <div>Name: {data.name}</div> : <div>Name: No data</div>}
+      {data ?  <div>Location: {data.location}</div> : <div>Location: No data</div>}
+      {data ?  <img alt="avatar profile" src={data.avatar_url}></img>: <div>none</div>}
     </div>
   );
 }
