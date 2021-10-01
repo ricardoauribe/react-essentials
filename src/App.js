@@ -1,6 +1,13 @@
 import './App.css';
 import React, {useState, useEffect, useReducer} from 'react';
 import restaurant from './restaurant.jpeg';
+import {Routes, Route} from "react-router-dom";
+import{
+  Home,
+  About,
+  Events,
+  Contact
+} from "./pages";
 
 function Header(props) {
   return (
@@ -92,6 +99,12 @@ function App(props) {
 
   return (
     <div className="App">
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/events" element={<Events />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
       <Header name="Ricardo" />
       <Main adjective="amazing" dishes={dishObject} />
       <Footer year={new Date().getFullYear()}/>
