@@ -64,12 +64,23 @@ function App(props) {
   );
 
   const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(()=>{
+    if(!props.login) return;
+    setLoading(true);
     fetch(`https://api.github.com/users/${props.login}`)
       .then(response => response.json())
-      .then(setData);
-  }, []);
+      .then(setData)
+      .then(()=> setLoading(false))
+      .catch(error);
+  }, [props.login]);
+
+
+  if(loading) <h1>Loading...</h1>;
+
+  if(error) <pre>{JSON.stringify(error, null, 2)}</pre>;
 
   useEffect(() => {
     console.log(`It's ${emotion} around here!`);
